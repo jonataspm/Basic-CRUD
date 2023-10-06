@@ -11,6 +11,6 @@
   form{
        margin: 0 2%;
     }
-  input{
+  input, button{
     padding:5px;
   }
