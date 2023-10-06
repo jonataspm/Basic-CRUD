@@ -12,22 +12,22 @@
 
 <body>
     <div class="navBar">
-        <a href="">Novo Item</a>
+        <span onclick="GetRegisterItensScreen()">Novo Item</span>
         <span> | </span>
-        <a href="">Listar Item </a>
+        <span onclick="GetListItensScreen()">Listar Item </span>
     </div>
-    <div>
+    <div id="NewItemForm" hidden>
         <table class="NewItemForm">
             <th>
                 <h1>Cadastrar Item</h1>
             </th>
-            <form action="">
+            <form id="myForm">
                 <tr>
                     <td>
                         <p>Modelo:</p>
                     </td>
                     <td>
-                        <input type="text" placeholder="Modelo">
+                        <input type="text" name="model" placeholder="Modelo">
                     </td>
                 </tr>
                 <tr>
@@ -35,7 +35,7 @@
                         <p>Marca:</p>
                     </td>
                     <td>
-                        <input type="text" placeholder="Marca">
+                        <input type="text" name="brand" placeholder="Marca">
                     </td>
                 </tr>
                 <tr>
@@ -43,10 +43,10 @@
                         <p>Tipo:</p>
                     </td>
                     <td>
-                        <select name="typeselect" id="">
+                        <select name="typeselected" id="">
                             <option default hidden>--Selection opcao--</option>
-                            <option value=""></option>
-                            <option value=""></option>
+                            <option value="1">Agua</option>
+                            <option value="2">Fogo</option>
                         </select>
                     </td>
                 </tr>
@@ -55,7 +55,7 @@
                         <p>Quantidade:</p>
                     </td>
                     <td>
-                        <input type="number" name="quantity" />
+                        <input type="number" name="quantity" value='1' />
                     </td>
                 </tr>
                 <tr>
@@ -83,13 +83,25 @@
                     </td>
                 </tr>
                 <th>
-                    <input type="submit" value="Cadastrar">
+                    <button type="button" onclick="AddItem()">Cadastrar</button>
                     <input type="reset" value="Limpar">
                 </th>
             </form>
         </table>
 
     </div>
+    <div id="ListItens">
+        <table class="Listitem">
+            <tr>
+                <th>Modelo</th>
+                <th>Marca</th>
+                <th>Qntd.</th>
+            </tr>
+        </table>
+
+    </div>
+
+
 </body>
 
 </html>
