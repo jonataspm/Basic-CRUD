@@ -13,17 +13,17 @@ function Televisao(modelo, marca, tipo, Qntd, condicao, diferencial){
 function GetRegisterItensScreen() {
     document.getElementById("NewItemForm").hidden = false;
     document.getElementById("ListItens").hidden = true;
-    document.getElementById("nit").style.color = 'blue' 
-    document.getElementById("lit").style.color = 'black' 
+    document.getElementById("nit").style.color = 'black' 
+    document.getElementById("lit").style.color = 'blue' 
 }
 
 function GetListItensScreen() {
     document.getElementById("NewItemForm").hidden = true;
     document.getElementById("ListItens").hidden = false;
-    document.getElementById("nit").style.color = 'black' 
-    document.getElementById("lit").style.color = 'blue' 
+    document.getElementById("nit").style.color = 'blue' 
+    document.getElementById("lit").style.color = 'black' 
 
-    document.getElementById("showList").innerHTML = '<tr><th>Modelo</th><th>Marca</th><th>Qntd.</th><th>Actions</th></tr>'
+    document.getElementById("showList").innerHTML = '<tr><th>Modelo</th><th>Marca</th><th>Qtde.</th><th>Actions</th></tr>'
 
     for(ar in ary)
         document.getElementById("showList").innerHTML += `<tr> <td>${ary[ar].Modelo}</td> <td>${ary[ar].Marca}</td> <td>${ary[ar].Quantidade}</td> <td><button>Edit</button><button>Test</button><button>Remove</button></td> </tr>`;

@@ -1,16 +1,16 @@
+body{
+    margin:5%;
+}
+.navBar{
+    margin-bottom: 40px;
+}
+
 .NewItemForm{
     padding: 10px 20px;
     border: 1px solid black;
     width:auto;
   }
   
-  h1{
-    margin: 0;
-  }
-  
-  form{
-       margin: 0 2%;
-    }
   input, button{
     padding:5px;
   }
@@ -18,3 +18,20 @@
   span{
     cursor: pointer;
   }
+
+  .listagem table, .listagem td, .listagem th {
+    border: 1px solid gray;
+  }
+  .listagem td, .listagem th {
+   padding: 5px;
+  }
+  .listagem table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+  }
+  .listagem th{
+    background-color: rgb(227, 227, 227);
+  }
+
+

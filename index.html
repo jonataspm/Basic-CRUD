@@ -14,88 +14,95 @@
     <div class="navBar">
         <span onclick="GetRegisterItensScreen()" id="nit"> <b>Novo Item</b></span>
         <span> <b>|</b> </span>
-        <span onclick="GetListItensScreen()" id="lit"> <b>Listar Item </b></span>
+        <span onclick="GetListItensScreen()" id="lit"> <b>Listar Itens </b></span>
     </div>
     <div id="NewItemForm" hidden>
-        <table class="NewItemForm">
-            <th>
-                <h1>Cadastrar Item</h1>
-            </th>
-            <form id="myForm">
-                <tr>
-                    <td>
-                        <p>Modelo:</p>
-                    </td>
-                    <td>
-                        <input type="text" name="model" placeholder="Modelo">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Marca:</p>
-                    </td>
-                    <td>
-                        <input type="text" name="brand" placeholder="Marca">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Tipo:</p>
-                    </td>
-                    <td>
-                        <select name="typeselected" id="">
-                            <option default hidden>--Selection opcao--</option>
-                            <option value="1">Agua</option>
-                            <option value="2">Fogo</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Quantidade:</p>
-                    </td>
-                    <td>
-                        <input type="number" name="quantity" value='1' />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Condição: </p>
-                    </td>
-                    <td>
-                        <input type="radio" id="condition1" name="condition" value="Novo">
-                        <label for="condition1">Novo</label>
-                        <input type="radio" id="condition2" name="condition" value="Usado">
-                        <label for="condition2">Usado</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>+Diferenciais: </p>
-                    </td>
-                    <td>
-                        <input type="checkbox" id="diff1" name="diff" value="Full HD">
-                        <label for="diff1">Full HD</label>
-                        <input type="checkbox" id="diff2" name="diff" value="5G">
-                        <label for="diff2">5G</label>
-                        <input type="checkbox" id="diff3" name="diff" value="DualCip">
-                        <label for="diff3">DualCip</label>
-                    </td>
-                </tr>
-                <th>
-                    <button type="button" onclick="AddItem()">Cadastrar</button>
-                    <input type="reset" value="Limpar">
-                </th>
-            </form>
-        </table>
 
+        <div class="NewItemForm">
+            <h1>Cadastrar Item</h1>
+            <table>
+                <form id="myForm">
+                    <tr>
+                        <td>
+                            <p>Modelo:</p>
+                        </td>
+                        <td>
+                            <input type="text" name="model" placeholder="Modelo">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Marca:</p>
+                        </td>
+                        <td>
+                            <input type="text" name="brand" placeholder="Marca">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Tipo:</p>
+                        </td>
+                        <td>
+                            <select name="typeselected" id="">
+                                <option default hidden>--Selection opcao--</option>
+                                <option value="1">Agua</option>
+                                <option value="2">Fogo</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Quantidade:</p>
+                        </td>
+                        <td>
+                            <input type="number" name="quantity" value='1' />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Condição: </p>
+                        </td>
+                        <td>
+                            <input type="radio" id="condition1" name="condition" value="Novo">
+                            <label for="condition1">Novo</label>
+                            <input type="radio" id="condition2" name="condition" value="Usado">
+                            <label for="condition2">Usado</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>+Diferenciais: </p>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="diff1" name="diff" value="Full HD">
+                            <label for="diff1">Full HD</label>
+                            <input type="checkbox" id="diff2" name="diff" value="5G">
+                            <label for="diff2">5G</label>
+                            <input type="checkbox" id="diff3" name="diff" value="DualCip">
+                            <label for="diff3">DualCip</label>
+                        </td>
+                    </tr>
+                    <th>
+                        <button type="button" onclick="AddItem()">Cadastrar</button>
+                        <input type="reset" value="Limpar">
+                    </th>
+                </form>
+            </table>
+        </div>
+        
     </div>
     <div id="ListItens" hidden>
-        <table class="NewItemForm" id="showList">
-             
-        </table>
+        <div class="NewItemForm listagem">
 
-    </div>
+            <h1>Itens Cadastrados</h1>
+
+            <table id="showList">
+
+            </table>
+
+
+
+        </div>
 
 
 </body>
