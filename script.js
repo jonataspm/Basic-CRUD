@@ -13,11 +13,15 @@ function Televisao(modelo, marca, tipo, Qntd, condicao, diferencial){
 function GetRegisterItensScreen() {
     document.getElementById("NewItemForm").hidden = false;
     document.getElementById("ListItens").hidden = true;
+    document.getElementById("nit").style.color = 'blue' 
+    document.getElementById("lit").style.color = 'black' 
 }
 
 function GetListItensScreen() {
     document.getElementById("NewItemForm").hidden = true;
     document.getElementById("ListItens").hidden = false;
+    document.getElementById("nit").style.color = 'black' 
+    document.getElementById("lit").style.color = 'blue' 
 
     document.getElementById("showList").innerHTML = '<tr><th>Modelo</th><th>Marca</th><th>Qntd.</th><th>Actions</th></tr>'
 
