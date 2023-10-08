@@ -23,7 +23,7 @@ function GetRegisterItensScreen() {
     document.getElementById("ListItens").hidden = true;
     document.getElementById("nit").style.color = 'black' 
     document.getElementById("lit").style.color = 'blue' 
-
+    document.getElementById("form").reset();
     document.getElementById('title-form').innerText = 'Cadastrar Item'
 
     var button = document.getElementById("btn-form");
@@ -63,10 +63,11 @@ function GetListItensScreen() {
 }
 
 function AddItem(){
-    var form = document.getElementById("myForm");
+    var form = document.getElementById("form");
 
     ary.push(new Televisao(form.model.value, form.brand.value, form.typeselected.value, form.quantity.value, form.condition.value, form.diff.value))
     alert("Adicionado")
+    form.reset()
 }
 
 
@@ -78,7 +79,7 @@ function RemoveObject(value){
 function EditObject(value){
     GetRegisterItensScreen();
     
-    var form = document.getElementById("myForm");
+    var form = document.getElementById("form");
     form.model.value = ary[value].Modelo;
     form.brand.value = ary[value].Marca;
     form.typeselected.value = ary[value].Tipo;
@@ -95,7 +96,7 @@ function EditObject(value){
 }
 
 function GetEditObject(value){
-    var form = document.getElementById("myForm");
+    var form = document.getElementById("form");
     ary[value] = new Televisao(form.model.value, form.brand.value, form.typeselected.value, form.quantity.value, form.condition.value, form.diff.value);
     alert("Alterado");
     GetListItensScreen();
