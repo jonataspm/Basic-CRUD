@@ -7,7 +7,7 @@
     <title>Document</title>
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 <body>
@@ -19,7 +19,7 @@
     <div id="NewItemForm" hidden>
 
         <div class="NewItemForm">
-            <h1>Cadastrar Item</h1>
+            <h1 id="title-form">Cadastrar Item</h1>
             <table>
                 <form id="myForm">
                     <tr>
@@ -83,7 +83,7 @@
                         </td>
                     </tr>
                     <th>
-                        <button type="button" onclick="AddItem()">Cadastrar</button>
+                        <button id="btn-form" type="button">Cadastrar</button>
                         <input type="reset" value="Limpar">
                     </th>
                 </form>
@@ -93,16 +93,21 @@
     </div>
     <div id="ListItens" hidden>
         <div class="NewItemForm listagem">
-
             <h1>Itens Cadastrados</h1>
-
-            <table id="showList">
-
-            </table>
-
-
-
+            <table id="showList"> </table>
         </div>
+    </div>
+   
+    
+    <div id="test" class="test">
+        <div class="test-content">
+            <span class="close" onclick="TestCloseObject()">&times;</span>
+            <h2 id="title-test">titulo</h2>
+            <div id="functiones">
+
+            </div>
+        </div>
+    </div>
 
 
 </body>
