@@ -1,19 +1,30 @@
 ary = [];
 
-function Televisao(modelo, marca, tipo, Qntd, condicao, diferencial){
+function Televisao(modelo, marca, tipo, Qntd, condicao, diferencial) {
     this.Modelo = modelo;
     this.Marca = marca;
-    this.Tipo =  tipo;
-    this.Quantidade =  Qntd;
-    this.Codicao =  condicao;
-    this.Diferencial =  diferencial.join(', ');
+    this.Tipo = tipo;
+    this.Quantidade = Qntd;
+    this.Codicao = condicao;
+    this.Diferencial = diferencial.join(', ');
+    this.IsOn = false;
 
-    function ligar(){
-        console.log(this.Modelo + ' está ligada')
+    this.ligar = () => {
+        if (this.IsOn == false) {
+            alert(this.Modelo + ' foi ligada');
+            this.IsOn = true;
+        }
+        else
+            alert(this.Modelo + ' já está ligada');
     }
 
-    function Desligar(){
-        console.log(this.Modelo + ' está desligada')
+    this.desligar = () => {
+        if (this.IsOn == true) {
+            alert(this.Modelo + ' foi desligada');
+            this.IsOn = false;
+        }
+        else
+            alert(this.Modelo + ' já está desligada');
     }
 }
 
@@ -21,13 +32,13 @@ function Televisao(modelo, marca, tipo, Qntd, condicao, diferencial){
 function GetRegisterItensScreen() {
     document.getElementById("NewItemForm").hidden = false;
     document.getElementById("ListItens").hidden = true;
-    document.getElementById("nit").style.color = 'black' 
-    document.getElementById("lit").style.color = 'blue' 
+    document.getElementById("nit").style.color = 'black'
+    document.getElementById("lit").style.color = 'blue'
     document.getElementById("form").reset();
     document.getElementById('title-form').innerText = 'Cadastrar Item'
 
     var button = document.getElementById("btn-form");
-    button.setAttribute("onclick","AddItem()");
+    button.setAttribute("onclick", "AddItem()");
     button.innerText = 'Cadastrar';
 
 }
@@ -35,14 +46,14 @@ function GetRegisterItensScreen() {
 function GetListItensScreen() {
     document.getElementById("NewItemForm").hidden = true;
     document.getElementById("ListItens").hidden = false;
-    document.getElementById("nit").style.color = 'blue' 
-    document.getElementById("lit").style.color = 'black' 
+    document.getElementById("nit").style.color = 'blue'
+    document.getElementById("lit").style.color = 'black'
 
     document.getElementById("showList").innerHTML = '<tr><th>Modelo</th><th>Marca</th><th>Qtde.</th><th>Actions</th></tr>'
 
-    for(ar in ary){
-        document.getElementById("showList").innerHTML += 
-        `<tr>
+    for (ar in ary) {
+        document.getElementById("showList").innerHTML +=
+            `<tr>
             <td>
                 ${ary[ar].Modelo}
             </td> 
@@ -62,20 +73,19 @@ function GetListItensScreen() {
     }
 }
 
-function AddItem(){
+function AddItem() {
     var form = document.getElementById("form");
     validateFields("add", form);
 }
 
-
-
-function RemoveObject(value){
+function RemoveObject(value) {
     ary.splice(value, 1);
     GetListItensScreen();
 }
-function EditObject(value){
+
+function EditObject(value) {
     GetRegisterItensScreen();
-    
+
     var form = document.getElementById("form");
     form.model.value = ary[value].Modelo;
     form.brand.value = ary[value].Marca;
@@ -92,29 +102,36 @@ function EditObject(value){
     });
 
     document.getElementById('title-form').innerText = 'Alterar Item'
-    
+
     var button = document.getElementById("btn-form");
-    button.setAttribute("onclick",`GetEditObject(${value})`);
+    button.setAttribute("onclick", `GetEditObject(${value})`);
     button.innerText = 'Editar';
-    
+
 }
 
-function GetEditObject(value){
+function GetEditObject(value) {
     var form = document.getElementById("form");
-    form.diff.value
     validateFields("edit", form, value);
 }
 
-function TestObject(value){
+function TestObject(value) {
     document.getElementById('test').style.display = 'block';
-    document.getElementById('title-test').innerHTML = ary[value].Modelo + ' - ' + ary[value].Marca;    
+    document.getElementById('title-test').innerHTML = `<p> Controle Remoto </p><p> ${ary[value].Modelo} </p>`;
+    document.getElementById('functiones').innerHTML = `<button onclick='Ligar(${value})'>Ligar</button> <button onclick='Desligar(${value})'>Desligar</button>`
 }
-function TestCloseObject(value){
+function TestCloseObject(value) {
     document.getElementById('test').style.display = 'none';
 }
 
+function Ligar(value) {
+    ary[value].ligar();
+}
+function Desligar(value) {
+    ary[value].desligar();
+}
 
-function validateFields(context = "add", form, value= null) {
+
+function validateFields(context = "add", form, value = null) {
     const fields = document.querySelectorAll('.field');
     const radioButtons = document.querySelectorAll('[name="condition"]');
     const differentialCheckboxes = document.querySelectorAll('input[name="diff"]');
