@@ -64,10 +64,8 @@ function GetListItensScreen() {
 
 function AddItem(){
     var form = document.getElementById("form");
-
-    ary.push(new Televisao(form.model.value, form.brand.value, form.typeselected.value, form.quantity.value, form.condition.value, form.diff.value))
-    alert("Adicionado")
-    form.reset()
+    validateFields();
+    form.reset();
 }
 
 
@@ -111,7 +109,41 @@ function TestCloseObject(value){
 }
 
 
+function validateFields() {
+    const fields = document.querySelectorAll('.field');
+    const radioButtons = document.querySelectorAll('[name="condition"]');
 
+    let allFilled = true;
 
+    fields.forEach(field => {
+        field.style.border = "";
+        if (!field.value.trim()) {
+            field.style.border = "1px solid red";
+            allFilled = false;
+        }
+    });
 
+    if (radioButtons) {
+        const isSelected = [...radioButtons].some(radio => radio.checked);
+        if (!isSelected) {
+            allFilled = false;
+            radioButtons.forEach(radio => {
+                const label = document.querySelector(`label[for="${radio.id}"]`);
+                if (label) label.style.color = "red";
+            });
+        } else {
+            radioButtons.forEach(radio => {
+                const label = document.querySelector(`label[for="${radio.id}"]`);
+                if (label) label.style.color = "";
+            });
+        }
+    }
 
+    if (!allFilled) {
+        alert("Todos os campos precisam ser preenchidos!");
+    }
+    else{
+        ary.push(new Televisao(form.model.value, form.brand.value, form.typeselected.value, form.quantity.value, form.condition.value, form.diff.value))
+        alert("Adicionado")
+    }
+}
