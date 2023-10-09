@@ -179,6 +179,7 @@ function validateFields(context = "add", form, value= null) {
     else if (context === "add" && allFilled) {
         ary.push(new Televisao(form.model.value, form.brand.value, form.typeselected.value, form.quantity.value, form.condition.value, selectedDifferentials))
         alert("Adicionado");
+        form.reset();
     }
     else if (context === "edit" && allFilled) {
         ary[value] = new Televisao(form.model.value, form.brand.value, form.typeselected.value, form.quantity.value, form.condition.value, selectedDifferentials);
