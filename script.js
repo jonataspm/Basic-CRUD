@@ -6,7 +6,7 @@ function Televisao(modelo, marca, tipo, Qntd, condicao, diferencial){
     this.Tipo =  tipo;
     this.Quantidade =  Qntd;
     this.Codicao =  condicao;
-    this.Diferencial =  diferencial;
+    this.Diferencial =  diferencial.join(', ');
 
     function ligar(){
         console.log(this.Modelo + ' está ligada')
@@ -64,8 +64,7 @@ function GetListItensScreen() {
 
 function AddItem(){
     var form = document.getElementById("form");
-    validateFields();
-    form.reset();
+    validateFields("add", form);
 }
 
 
@@ -83,7 +82,14 @@ function EditObject(value){
     form.typeselected.value = ary[value].Tipo;
     form.quantity.value = ary[value].Quantidade;
     form.condition.value = ary[value].Codicao;
-    form.diff.value = ary[value].Diferencial;
+
+    document.querySelectorAll('input[name="diff"]').forEach(checkbox => {
+        checkbox.checked = false;
+    });
+
+    ary[value].Diferencial.split(', ').forEach(diff => {
+        document.querySelector(`input[name="diff"][value="${diff}"]`).checked = true;
+    });
 
     document.getElementById('title-form').innerText = 'Alterar Item'
     
@@ -95,8 +101,8 @@ function EditObject(value){
 
 function GetEditObject(value){
     var form = document.getElementById("form");
-    ary[value] = new Televisao(form.model.value, form.brand.value, form.typeselected.value, form.quantity.value, form.condition.value, form.diff.value);
-    alert("Alterado");
+    form.diff.value
+    validateFields("edit", form, value);
     GetListItensScreen();
 }
 
@@ -109,11 +115,15 @@ function TestCloseObject(value){
 }
 
 
-function validateFields() {
+function validateFields(context = "add", form, value= null) {
     const fields = document.querySelectorAll('.field');
     const radioButtons = document.querySelectorAll('[name="condition"]');
-
     let allFilled = true;
+
+    let selectedDifferentials = [];
+    document.querySelectorAll('input[name="diff"]:checked').forEach(checkbox => {
+        selectedDifferentials.push(checkbox.value);
+    });
 
     fields.forEach(field => {
         field.style.border = "";
@@ -142,8 +152,13 @@ function validateFields() {
     if (!allFilled) {
         alert("Todos os campos precisam ser preenchidos!");
     }
-    else{
-        ary.push(new Televisao(form.model.value, form.brand.value, form.typeselected.value, form.quantity.value, form.condition.value, form.diff.value))
+    else if(context === "add" && allFilled){
+        ary.push(new Televisao(form.model.value, form.brand.value, form.typeselected.value, form.quantity.value, form.condition.value, selectedDifferentials));
         alert("Adicionado")
+        form.reset();
+    }
+    else if (context === "edit" && allFilled){
+        ary[value] = new Televisao(form.model.value, form.brand.value, form.typeselected.value, form.quantity.value, form.condition.value, selectedDifferentials);
+        alert("Editado")
     }
 }
