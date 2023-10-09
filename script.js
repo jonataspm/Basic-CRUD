@@ -103,7 +103,6 @@ function GetEditObject(value){
     var form = document.getElementById("form");
     form.diff.value
     validateFields("edit", form, value);
-    GetListItensScreen();
 }
 
 function TestObject(value){
@@ -118,12 +117,10 @@ function TestCloseObject(value){
 function validateFields(context = "add", form, value= null) {
     const fields = document.querySelectorAll('.field');
     const radioButtons = document.querySelectorAll('[name="condition"]');
-    let allFilled = true;
+    const differentialCheckboxes = document.querySelectorAll('input[name="diff"]');
+    const typeSelected = document.querySelector('select[name="typeselected"]');
 
-    let selectedDifferentials = [];
-    document.querySelectorAll('input[name="diff"]:checked').forEach(checkbox => {
-        selectedDifferentials.push(checkbox.value);
-    });
+    let allFilled = true;
 
     fields.forEach(field => {
         field.style.border = "";
@@ -149,16 +146,44 @@ function validateFields(context = "add", form, value= null) {
         }
     }
 
+    const differentialSelected = [...differentialCheckboxes].some(checkbox => checkbox.checked);
+    if (!differentialSelected) {
+        allFilled = false;
+        differentialCheckboxes.forEach(checkbox => {
+            const label = document.querySelector(`label[for="${checkbox.id}"]`);
+            if (label) label.style.color = "red";
+        });
+    } else {
+        differentialCheckboxes.forEach(checkbox => {
+            const label = document.querySelector(`label[for="${checkbox.id}"]`);
+            if (label) label.style.color = "";
+        });
+    }
+
+    if (!typeSelected.value || typeSelected.value === "--Selection opcao--") {
+        allFilled = false;
+        typeSelected.style.border = "1px solid red";
+    } else {
+        typeSelected.style.border = "";
+    }
+
+    let selectedDifferentials = [];
+    differentialCheckboxes.forEach(checkbox => {
+        if (checkbox.checked) selectedDifferentials.push(checkbox.value);
+    });
+
     if (!allFilled) {
-        alert("Todos os campos precisam ser preenchidos!");
+        alert("Todos os campos e seleções precisam ser preenchidos!");
+        return false;
     }
-    else if(context === "add" && allFilled){
-        ary.push(new Televisao(form.model.value, form.brand.value, form.typeselected.value, form.quantity.value, form.condition.value, selectedDifferentials));
-        alert("Adicionado")
-        form.reset();
+    else if (context === "add" && allFilled) {
+        ary.push(new Televisao(form.model.value, form.brand.value, form.typeselected.value, form.quantity.value, form.condition.value, selectedDifferentials))
+        alert("Adicionado");
     }
-    else if (context === "edit" && allFilled){
+    else if (context === "edit" && allFilled) {
         ary[value] = new Televisao(form.model.value, form.brand.value, form.typeselected.value, form.quantity.value, form.condition.value, selectedDifferentials);
-        alert("Editado")
+        alert("Editado");
+        GetListItensScreen();
     }
+    return true;
 }
